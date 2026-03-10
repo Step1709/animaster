@@ -24,6 +24,12 @@ function addListeners() {
             const block = document.getElementById('scaleBlock');
             animaster().scale(block, 1000, 1.25);
         });
+    
+    document.getElementById('showAndHidePlay')
+        .addEventListener('click', function () {
+            const block = document.getElementById('showAndHideBlock');
+            animaster().showAndHide(block, 5000);
+        });
 }
 function animaster(){
     return{
@@ -55,8 +61,16 @@ function animaster(){
             const hideTime = 3/5;
             this.move(element, duration * move);
 
-        }
+        },
+
+        showAndHide(element, duration) {
+            element.style.transitionDuration =  `${duration}ms`;
+            this.fadeIn(element, duration / 3)
+            setTimeout(() => {
+            this.fadeOut(element, duration / 3)
+            }, duration / 3);
     }
+}
     /**
      * Блок плавно появляется из прозрачного.
      * @param element — HTMLElement, который надо анимировать
@@ -79,16 +93,15 @@ function animaster(){
      * @param ratio — во сколько раз увеличить/уменьшить. Чтобы уменьшить, нужно передать значение меньше 1
      */
 
-
-    function getTransform(translation, ratio) {
-        const result = [];
-        if (translation) {
-            result.push(`translate(${translation.x}px,${translation.y}px)`);
-        }
-        if (ratio) {
-            result.push(`scale(${ratio})`);
-        }
-        return result.join(' ');
+}
+function getTransform(translation, ratio) {
+    const result = [];
+    if (translation) {
+        result.push(`translate(${translation.x}px,${translation.y}px)`);
     }
+    if (ratio) {
+        result.push(`scale(${ratio})`);
+    }
+    return result.join(' ');
 }
 
