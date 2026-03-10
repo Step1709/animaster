@@ -38,6 +38,18 @@ function addListeners() {
             animaster().moveAndHide(block, 5000);
         });
 
+    document.getElementById('heartBeatingPlay')
+        .addEventListener('click', function () {
+            const block = document.getElementById('heartBeatingBlock');
+            animaster().heartBeating(block, 1000, 1.4);
+        });
+
+    document.getElementById('heartBeatingStop')
+        .addEventListener('click', function () {
+            const block = document.getElementById('heartBeatingBlock');
+            animaster().heartBeating().stop();
+        });
+
 }
 function animaster(){
     return{
@@ -81,7 +93,22 @@ function animaster(){
             setTimeout(() => {
             this.fadeOut(element, duration / 3)
             }, duration / 3);
-    }
+        },
+
+        heartBeating(element, duration, ratio) {
+            element.style.transitionDuration =  `${duration}ms`;
+            const Timer = setInterval(() => {
+                this.scale(element, duration / 2, ratio)
+                setTimeout(() => {
+                    this.scale(element, duration / 2, 1)
+                }, duration / 2);
+            }, duration);
+            return {
+                stop(){
+                    clearInterval(Timer)
+                }
+            }
+        }
 }
     /**
      * Блок плавно появляется из прозрачного.
