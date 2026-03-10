@@ -24,20 +24,20 @@ function addListeners() {
             const block = document.getElementById('scaleBlock');
             animaster().scale(block, 1000, 1.25);
         });
-<<<<<<< HEAD
-    
+
+
     document.getElementById('showAndHidePlay')
         .addEventListener('click', function () {
             const block = document.getElementById('showAndHideBlock');
             animaster().showAndHide(block, 5000);
-=======
+        });
 
     document.getElementById('moveAndHidePlay')
         .addEventListener('click', function () {
             const block = document.getElementById('moveAndHideBlock');
             animaster().moveAndHide(block, 5000);
->>>>>>> 159308a4b4de43d745e1c28d612f6b18d10b5dcb
         });
+
 }
 function animaster(){
     return{
